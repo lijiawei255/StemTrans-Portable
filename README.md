@@ -78,7 +78,7 @@ StemTrans-Portable 是这五个问题的工程化答案：**纯 CPU、纯本地�
 | 界面 | **CustomTkinter，极简深蓝** | 强制 light；雾白 + 瓷白 + 深海蓝 + 冰蓝，单一强调色 |
 | 便携 | **环境变量在 import 前重定向** | 模型/缓存/日志全部落在软件目录 |
 | 退出 | **`WM_DELETE_WINDOW` → 停止线程 → `os._exit`** | 实测 0.28 s 退出（双通道运行中），无托盘、无僵尸进程 |
-| 打包 | **PyInstaller onedir + `--contents-directory .`** | 生成可拷进 U 盘的独立文件夹 |
+| 打包 | **PyInstaller onedir + `_internal`** | 完整模型随包提供，运行库集中存放 |
 
 ---
 
@@ -294,6 +294,10 @@ python main.py
 
 ### 5. 打包成绿色文件夹
 
+普通用户直接从 [GitHub Releases](https://github.com/lijiawei255/StemTrans-Portable/releases/latest) 下载 Windows x64 完整 ZIP，**全部解压**后双击 `StemTrans-Portable.exe`。无需安装 Python / Conda 或重新下载模型。运行时请保留所有子文件夹。
+
+开发者构建：
+
 ```bat
 build_portable.bat
 ```
@@ -302,10 +306,23 @@ build_portable.bat
 
 ```
 StemTrans-Portable.exe
-config\  assets\  models\  README.md  LICENSE
+_internal\  config\  assets\  models\  licenses\
+README.md  QUICKSTART.txt  LICENSE  THIRD_PARTY_NOTICES.md
+build-manifest.json
 ```
 
-整个文件夹可以拷到 U 盘或另一台无 Python 的 Windows 11 机器上直接运行。模型是否复制进包内会在脚本里询问（+1.3 GB）。
+整个文件夹可复制到可写的 U 盘或 Windows 11 x64 电脑。构建始终包含 Silero、Whisper base、Qwen 1.5B 三个模型；不包含本机配置、日志或调试音频。已有输出不会被删除，重复构建可在 stemtrans 环境执行 `python tools/build_portable.py --output-name StemTrans-new`。
+
+构建只从指定 Python 环境和 Windows 目录收集原生库，避免其他开发软件在 PATH 中的同名 DLL 污染。`build-manifest.json` 记录版本、源码提交、依赖版本和各文件 SHA-256。
+
+绿色版自检（PowerShell）：
+
+```powershell
+Start-Process .\StemTrans-Portable.exe -ArgumentList '--self-test' -Wait
+Get-Content .\logs\self-test.txt
+```
+
+维护者先运行 `powershell -ExecutionPolicy Bypass -File tools/generate_check_audio.ps1` 生成固定句子的测试音频（需要中英 SAPI 声音），再用 `--verify-runtime <测试音频目录> --report <报告.json>` 验证 EXE 内的真实模型与 GUI。目录包含 16 kHz、单声道 PCM16 的 `regression_zh.wav` 和 `regression_en.wav`；`--check-audio` 另外打开麦克风与回环、播放英文测试音频并检查 SAPI 中断。此命令仅用于发布验证，正常启动不会运行这些检查。测试音频为本机合成语音，不进入发行包。
 
 ---
 
@@ -625,7 +642,7 @@ build_portable.bat
 
 MIT License © 2026 **JIAWEI LI**. 见 [LICENSE](./LICENSE)。
 
-模型与第三方组件遵循各自许可证：Silero VAD (MIT)、Faster-Whisper (MIT)、CTranslate2 (MIT)、Qwen2.5 (Apache-2.0)、llama.cpp (MIT)、CustomTkinter (MIT)。
+模型与第三方组件遵循各自许可证，详见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。Release 同时提供对应的第三方源码压缩包，运行软件无需下载该源码包。
 
 如果这个项目帮你顺利完成了一次组会或国际会议，欢迎在 GitHub 上点一个 Star。
 

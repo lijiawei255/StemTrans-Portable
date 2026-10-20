@@ -11,9 +11,9 @@ rem    build_portable.bat
 rem
 rem  Output: dist\StemTrans-Portable\
 rem    StemTrans-Portable.exe
-rem    config\  assets\  models\  README.md  LICENSE
+rem    _internal\  config\  assets\  models\  licenses\
 rem
-rem  Models are copied only if you answer Y (adds ~1.3 GB).
+rem  All required models are included (adds ~1.3 GB).
 rem  ASCII-only on purpose (cmd.exe + UTF-8 batch files do not mix reliably).
 rem ===========================================================================
 
@@ -51,76 +51,13 @@ echo   Build portable folder: %APP_NAME%
 echo ===========================================================================
 echo.
 
-python -m PyInstaller --version >nul 2>nul
-echo [1/5] ensuring PyInstaller ^>= 6.3 ...
-python -m pip install --upgrade "pyinstaller>=6.3"
+echo Building complete portable distribution, including models ...
+python -m pip install "pyinstaller>=6.3,<7"
 if errorlevel 1 goto fail
-
-echo [2/5] cleaning previous build ...
-if exist "build" rmdir /s /q "build"
-if exist "dist" rmdir /s /q "dist"
-
-echo [3/5] running PyInstaller (this can take several minutes) ...
-python -m PyInstaller ^
-    --noconfirm --clean --windowed --onedir ^
-    --contents-directory "." ^
-    --name "%APP_NAME%" ^
-    --add-data "config\settings.json;config" ^
-    --add-data "config\glossary.json;config" ^
-    --add-data "assets;assets" ^
-    --collect-all customtkinter ^
-    --collect-all llama_cpp ^
-    --collect-all faster_whisper ^
-    --collect-all ctranslate2 ^
-    --collect-all onnxruntime ^
-    --collect-all pyaudiowpatch ^
-    --collect-submodules pyttsx3 ^
-    --collect-submodules comtypes ^
-    --collect-data zhconv ^
-    --hidden-import core.audio_capture ^
-    --hidden-import core.inference_engine ^
-    --hidden-import core.tts_worker ^
-    --hidden-import ui.main_window ^
-    main.py
-if errorlevel 1 (
-    echo [ERROR] PyInstaller failed.
-    goto fail
-)
-
-set "OUT=dist\%APP_NAME%"
-if not exist "%OUT%\%APP_NAME%.exe" (
-    echo [ERROR] expected exe not found: %OUT%\%APP_NAME%.exe
-    goto fail
-)
-
-echo [4/5] copying docs and model folder ...
-copy /Y "README.md" "%OUT%\README.md" >nul
-copy /Y "LICENSE" "%OUT%\LICENSE" >nul
-if not exist "%OUT%\models" mkdir "%OUT%\models"
-if exist "models\silero_vad.onnx" copy /Y "models\silero_vad.onnx" "%OUT%\models\silero_vad.onnx" >nul
-if exist "models\whisper-base\model.bin" (
-    xcopy /E /I /Y "models\whisper-base" "%OUT%\models\whisper-base" >nul
-)
-for %%G in ("models\*.gguf") do (
-    if exist "%%~fG" copy /Y "%%~fG" "%OUT%\models\" >nul
-)
-
-set "COPY_MODELS="
-set /p "COPY_MODELS=Copy the full models folder too? (~1.3 GB) [y/N]: "
-if /I "!COPY_MODELS!"=="y" (
-    echo       copying models ...
-    robocopy "models" "%OUT%\models" /E /XD hf_cache torch_cache xdg_cache numba_cache /NFL /NDL /NJH /NJS >nul
-)
-
-echo [5/5] done.
+python tools\build_portable.py
+if errorlevel 1 goto fail
 echo.
-for /f %%S in ('powershell -NoProfile -Command "[math]::Round((Get-ChildItem -Recurse -File '%OUT%' ^| Measure-Object Length -Sum).Sum/1MB,1)"') do set "SIZE=%%S"
-echo   folder : %CD%\%OUT%
-echo   size   : %SIZE% MB
-echo.
-echo   Double-click %APP_NAME%.exe inside that folder.
-echo   The folder is self-contained: copy it to a USB stick and run.
-echo.
+echo Portable folder: %CD%\dist\StemTrans-Portable
 if "%NOPAUSE%"=="0" pause
 exit /b 0
 

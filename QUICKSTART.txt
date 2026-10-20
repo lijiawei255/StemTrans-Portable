@@ -1,0 +1,24 @@
+StemTrans-Portable 1.1.0 / Windows 11 x64
+
+1. 将 ZIP 完整解压到一个可写的文件夹；不要在压缩包内直接运行。
+2. 双击 StemTrans-Portable.exe。无需安装 Python、Conda 或下载模型。
+3. 等待界面显示模型已就绪。默认“单麦提词 / 中文 → 英文”。
+4. 点击“开始”或按 F5，再开始说话。停顿约 1.1 秒后显示原文和译文。
+5. 在“设置 → 声音与断句”选择麦克风、系统声音设备和断句速度。
+6. 线上会议使用双通道：麦克风中文 → 英文，系统声音英文 → 中文。
+7. 自动朗读默认关闭。主动开启后，朗读期间会暂停收音。
+
+请保留 EXE、_internal、models、config 等文件的相对位置。
+模型推理在本机 CPU 上完成，不需要登录或联网。
+首次加载和翻译速度取决于 CPU 与硬盘。长时间不间断发言仍会分段。
+Windows 麦克风隐私设置需允许桌面应用访问麦克风。
+系统语音朗读使用 Windows 已安装的 SAPI 声音。
+
+设置保存在 config/settings.local.json；故障日志在 logs/app.log。
+自检：在此文件夹的 PowerShell 中执行：
+  Start-Process .\StemTrans-Portable.exe -ArgumentList '--self-test' -Wait
+查看 logs/self-test.txt。
+
+完整说明与源码：
+https://github.com/lijiawei255/StemTrans-Portable
+第三方组件和模型的许可见 THIRD_PARTY_NOTICES.md 与 licenses 文件夹。

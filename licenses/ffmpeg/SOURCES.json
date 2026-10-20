@@ -1,0 +1,117 @@
+[
+  {
+    "file": "nv-codec-headers.tar.gz",
+    "url": "https://github.com/FFmpeg/nv-codec-headers/archive/refs/tags/n13.0.19.0.tar.gz",
+    "sha256": "86d15d1a7c0ac73a0eafdfc57bebfeba7da8264595bf531cf4d8db1c22940116"
+  },
+  {
+    "file": "amf-headers.tar.gz",
+    "url": "https://github.com/GPUOpen-LibrariesAndSDKs/AMF/releases/download/v1.5.0/AMF-headers-v1.5.0.tar.gz",
+    "sha256": "d569647fa26f289affe81a206259fa92f819d06db1e80cc334559953e82a3f01"
+  },
+  {
+    "file": "libvpl.tar.gz",
+    "url": "https://github.com/intel/libvpl/archive/refs/tags/v2.16.0.tar.gz",
+    "sha256": "d60931937426130ddad9f1975c010543f0da99e67edb1c6070656b7947f633b6"
+  },
+  {
+    "file": "nasm.tar.xz",
+    "url": "https://www.nasm.us/pub/nasm/releasebuilds/2.16.03/nasm-2.16.03.tar.xz",
+    "sha256": "1412a1c760bbd05db026b6c0d1657affd6631cd0a63cddb6f73cc6d4aa616148"
+  },
+  {
+    "file": "ffmpeg.tar.xz",
+    "url": "https://ffmpeg.org/releases/ffmpeg-8.1.1.tar.xz",
+    "sha256": "b6863adde98898f42602017462871b5f6333e65aec803fdd7a6308639c52edf3"
+  },
+  {
+    "file": "lame.tar.gz",
+    "url": "https://deb.debian.org/debian/pool/main/l/lame/lame_3.100.orig.tar.gz",
+    "sha256": "ddfe36cab873794038ae2c1210557ad34857a4b6bdc515785d1da9e175b1da1e"
+  },
+  {
+    "file": "opus.tar.gz",
+    "url": "https://ftp.osuosl.org/pub/xiph/releases/opus/opus-1.6.1.tar.gz",
+    "sha256": "6ffcb593207be92584df15b32466ed64bbec99109f007c82205f0194572411a1"
+  },
+  {
+    "file": "dav1d.tar.bz2",
+    "url": "https://code.videolan.org/videolan/dav1d/-/archive/1.5.3/dav1d-1.5.3.tar.bz2",
+    "sha256": "e099f53253f6c247580c554d53a13f1040638f2066edc3c740e4c2f15174ce22"
+  },
+  {
+    "file": "libsvtav1.tar.bz2",
+    "url": "https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v4.1.0/SVT-AV1-v4.1.0.tar.bz2",
+    "sha256": "184162d3db3a4448882b17230413b4938ca252eef6b3c5e2f1236b2fcf497881"
+  },
+  {
+    "file": "vpx.tar.gz",
+    "url": "https://github.com/webmproject/libvpx/archive/refs/tags/v1.16.0.tar.gz",
+    "sha256": "7a479a3c66b9f5d5542a4c6a1b7d3768a983b1e5c14c60a9396edc9b649e015c"
+  },
+  {
+    "file": "png.tar.xz",
+    "url": "https://downloads.sourceforge.net/project/libpng/libpng16/1.6.58/libpng-1.6.58.tar.xz",
+    "sha256": "28eb403f51f0f7405249132cecfe82ea5c0ef97f1b32c5a65828814ae0d34775"
+  },
+  {
+    "file": "webp.tar.gz",
+    "url": "https://github.com/webmproject/libwebp/archive/refs/tags/v1.6.0.tar.gz",
+    "sha256": "93a852c2b3efafee3723efd4636de855b46f9fe1efddd607e1f42f60fc8f2136"
+  },
+  {
+    "file": "opencore-amr.tar.gz",
+    "url": "https://downloads.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.6.tar.gz",
+    "sha256": "483eb4061088e2b34b358e47540b5d495a96cd468e361050fae615b1809dc4a1"
+  },
+  {
+    "file": "x264.tar.bz2",
+    "url": "https://code.videolan.org/videolan/x264/-/archive/b35605ace3ddf7c1a5d67a2eb553f034aef41d55/x264-b35605ace3ddf7c1a5d67a2eb553f034aef41d55.tar.bz2",
+    "sha256": "6eeb82934e69fd51e043bd8c5b0d152839638d1ce7aa4eea65a3fedcf83ff224"
+  },
+  {
+    "file": "x265.tar.gz",
+    "url": "https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.2.tar.gz",
+    "sha256": "40b1ea0453e0309f0eba934e0ddf533f8f6295966679e8894e8f1c1c8d5e1210"
+  },
+  {
+    "file": "pyav-ffmpeg-build-8.1.1-2.tar.gz",
+    "url": "https://api.github.com/repos/PyAV-Org/pyav-ffmpeg/tarball/8.1.1-2",
+    "sha256": "949ab1ebeb6ea8d9ee4a58283458826ca01e6dc8c82225d502747713722d0c73"
+  },
+  {
+    "file": "libiconv-1.19.tar.gz",
+    "url": "https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.19.tar.gz",
+    "sha256": "88dd96a8c0464eca144fc791ae60cd31cd8ee78321e67397e25fc095c4a19aa6"
+  },
+  {
+    "file": "zlib-1.3.2.tar.gz",
+    "url": "https://zlib.net/zlib-1.3.2.tar.gz",
+    "sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16"
+  },
+  {
+    "file": "av-17.1.0.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/5e/e3/477fa20578c284abeda08d91b63ee9abaebc93445d8feeb989d3d444bae1/av-17.1.0.tar.gz",
+    "sha256": "7f1e71ff621b66253333926f948e00faae11d855b2442133c65128bca64cdeb3"
+  },
+  {
+    "file": "pyttsx3-2.99.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/94/4e/a37786f666f4f084fc45e026ca1e63f7b49ac0d90b53fa35ae62b73c96a8/pyttsx3-2.99.tar.gz",
+    "sha256": "a18a5601530a570c43491b4112887fc34c47e118fc937287db8d21905da1f74e"
+  },
+  {
+    "file": "certifi-2026.10.19.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/a6/bd/1436c50cc46699de0230fbaacc1d1de7bfec413176099949e9d5112e88f2/certifi-2026.10.19.tar.gz",
+    "sha256": "035c1e85572b141bf1c3a3eff0e33a8eb74917522f2559075ff8d2fea780a1ae"
+  },
+  {
+    "file": "tqdm-4.70.1.tar.gz",
+    "url": "https://files.pythonhosted.org/packages/0d/ea/b2a5bd54b28a324dae8211928b2d730b6547500342c7e6c6dea08bd0a485/tqdm-4.70.1.tar.gz",
+    "sha256": "cefd0eca11b2a37a3aee776544d4f4ae913f02688135b5556b8788dfa474afc4"
+  },
+  {
+    "file": "libiconv-msys2-build.zip",
+    "url": "https://github.com/msys2/MINGW-packages/tree/045d46aedb9fdbd93b0900b1e20c1a6c73f23072/mingw-w64-libiconv",
+    "sha256": "befd0fb2019b3c9bc17bbcda65e7b131798ccb1e9a680a74597e29e42b4e433e"
+  }
+]

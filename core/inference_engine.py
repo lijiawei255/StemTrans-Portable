@@ -401,9 +401,25 @@ def _to_simplified(text: str) -> str:
     if not text:
         return text
     try:
-        from zhconv import convert
+        import ctypes
+        from ctypes import wintypes
 
-        return convert(text, "zh-cn")
+        # Windows NLS avoids shipping a separate conversion dictionary.
+        convert = ctypes.WinDLL("kernel32", use_last_error=True).LCMapStringEx
+        convert.argtypes = [
+            wintypes.LPCWSTR, wintypes.DWORD, wintypes.LPCWSTR, ctypes.c_int,
+            wintypes.LPWSTR, ctypes.c_int, ctypes.c_void_p, ctypes.c_void_p,
+            ctypes.c_ssize_t,
+        ]
+        convert.restype = ctypes.c_int
+        flags = 0x02000000  # LCMAP_SIMPLIFIED_CHINESE
+        size = convert("zh-CN", flags, text, -1, None, 0, None, None, 0)
+        if not size:
+            raise ctypes.WinError(ctypes.get_last_error())
+        output = ctypes.create_unicode_buffer(size)
+        if not convert("zh-CN", flags, text, -1, output, size, None, None, 0):
+            raise ctypes.WinError(ctypes.get_last_error())
+        return output.value
     except Exception:
         return text
 

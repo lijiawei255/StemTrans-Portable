@@ -78,10 +78,11 @@ if not logger.handlers:
         LOG_PATH, maxBytes=1_500_000, backupCount=2, encoding="utf-8"
     )
     _file.setFormatter(_formatter)
-    _console = logging.StreamHandler(stream=sys.stdout)
-    _console.setFormatter(_formatter)
     logger.addHandler(_file)
-    logger.addHandler(_console)
+    if sys.stdout is not None:
+        _console = logging.StreamHandler(stream=sys.stdout)
+        _console.setFormatter(_formatter)
+        logger.addHandler(_console)
 
 from core.audio_capture import (  # noqa: E402
     AudioCaptureManager,
@@ -849,7 +850,6 @@ def self_test() -> int:
         ("pyaudiowpatch", "pyaudiowpatch"),
         ("onnxruntime", "onnxruntime"),
         ("faster_whisper", "faster_whisper"),
-        ("zhconv", "zhconv"),
         ("llama_cpp", "llama_cpp"),
         ("pyttsx3", "pyttsx3"),
         ("requests", "requests"),
@@ -927,6 +927,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.set_defaults(tts=None)
     parser.add_argument("--geometry", default=None, help="Tk geometry override")
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--report", help="write diagnostic output to a UTF-8 file")
+    parser.add_argument(
+        "--verify-runtime", metavar="FIXTURE_DIR",
+        help="verify models and GUI using regression_zh.wav and regression_en.wav",
+    )
+    parser.add_argument(
+        "--check-audio", action="store_true",
+        help="with --verify-runtime, test microphone, loopback playback and SAPI",
+    )
     parser.add_argument("--list-devices", action="store_true")
     parser.add_argument("--debug", action="store_true")
     return parser.parse_args(argv)
@@ -942,7 +951,20 @@ def main(argv: list[str] | None = None) -> int:
     source = configure_network(source)
     settings["network"]["source"] = source
 
+    if args.verify_runtime:
+        from core.runtime_check import run_checks
+
+        return run_checks(
+            sys.modules[__name__], args.verify_runtime, args.report, args.check_audio
+        )
     if args.self_test:
+        if args.report or getattr(sys, "frozen", False):
+            from contextlib import redirect_stdout, redirect_stderr
+
+            path = args.report or os.path.join(LOG_DIR, "self-test.txt")
+            with open(path, "w", encoding="utf-8") as handle:
+                with redirect_stdout(handle), redirect_stderr(handle):
+                    return self_test()
         return self_test()
     if args.list_devices:
         return list_devices()

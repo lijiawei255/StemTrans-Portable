@@ -25,9 +25,7 @@ faster-whisper>=1.1.0,<2.0
 ctranslate2>=4.5.0,<5.0
 tokenizers>=0.20,<0.22
 huggingface-hub>=0.26,<1.0
-# Whisper's Chinese output is often Traditional; normalise to Simplified so the
-# glossary (Simplified) matches and the UI stays consistent.
-zhconv>=1.4.0
+# Chinese script normalization uses Windows NLS (no extra dictionary required).
 
 # ---- Local LLM translation (Qwen2.5 GGUF via llama.cpp) ---------------------
 llama-cpp-python>=0.3.8,<0.4

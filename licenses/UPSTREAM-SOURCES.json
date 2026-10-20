@@ -1,0 +1,16 @@
+{
+  "models/Silero-MIT.txt": "https://raw.githubusercontent.com/snakers4/silero-vad/v5.1.2/LICENSE",
+  "models/Whisper-MIT.txt": "https://raw.githubusercontent.com/openai/whisper/main/LICENSE",
+  "models/Qwen-Apache-2.0.txt": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/raw/main/LICENSE",
+  "CTranslate2-MIT.txt": "https://raw.githubusercontent.com/OpenNMT/CTranslate2/v4.8.3/LICENSE",
+  "flatbuffers-Apache-2.0.txt": "https://raw.githubusercontent.com/google/flatbuffers/v25.12.19/LICENSE",
+  "tokenizers-Apache-2.0.txt": "https://raw.githubusercontent.com/huggingface/tokenizers/v0.21.4/LICENSE",
+  "tqdm-LICENSE.txt": "https://raw.githubusercontent.com/tqdm/tqdm/v4.70.1/LICENCE",
+  "PortAudio-MIT.txt": "https://raw.githubusercontent.com/PortAudio/portaudio/master/LICENSE.txt",
+  "llama.cpp-MIT.txt": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/LICENSE",
+  "Tcl-license.txt": "https://raw.githubusercontent.com/tcltk/tcl/core-8-6-branch/license.terms",
+  "Tk-license.txt": "https://raw.githubusercontent.com/tcltk/tk/core-8-6-branch/license.terms",
+  "ffmpeg/COPYING.LGPLv3": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/n8.1.1/COPYING.LGPLv3",
+  "ffmpeg/COPYING.GPLv3": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/n8.1.1/COPYING.GPLv3",
+  "ffmpeg/LICENSE.md": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/n8.1.1/LICENSE.md"
+}
