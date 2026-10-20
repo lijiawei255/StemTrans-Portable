@@ -17,7 +17,9 @@ foreach ($language in @('zh', 'en')) {
         $speaker.SetOutputToWaveFile((Join-Path $target "regression_$language.wav"), $format)
         $prompt = [System.Speech.Synthesis.PromptBuilder]::new($voice.VoiceInfo.Culture)
         if ($language -eq 'zh') {
-            $prompt.AppendText('今天我们先检查麦克风。')
+            # No punctuation here: SAPI would add its own sentence pause on
+            # top of the intentional 700 ms thinking pause.
+            $prompt.AppendText('今天我们先检查麦克风')
             $prompt.AppendBreak([TimeSpan]::FromMilliseconds(700))
             $prompt.AppendText('稍后再讨论实验结果。请等我把这句话说完，再翻译成英文。')
         } else {
