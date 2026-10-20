@@ -1,0 +1,103 @@
+# =============================================================================
+# StemTrans-Portable — Git ignore rules
+# Models, caches and build artefacts never enter the repository.
+# The live UI capture (assets/ui_live_capture.png) IS versioned on purpose.
+# =============================================================================
+
+# ---- Local models & runtime caches (portable, never committed) ----
+models/*
+!models/.gitkeep
+
+# Model weights / runtimes in any location
+*.gguf
+*.onnx
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.mlmodel
+*.tflite
+
+# Audio dumps, transcripts and logs produced during debugging
+*.wav
+*.mp3
+*.flac
+*.m4a
+logs/
+*.log
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ---- Virtual environments / conda ----
+.conda/
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.conda
+
+# ---- Test / coverage ----
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# ---- Packaging ----
+*.spec.bak
+dist_portable/
+release/
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Local overrides (never commit personal device choices) ----
+config/settings.local.json
+config/*.local.json
+config/*.local.json.tmp
+
+# ---- Local AI handoff / working notes (never commit) ----
+HANDOFF.md
+handoff*.md
+
+# ---- Keep the real screenshot and placeholder files ----
+!assets/.gitkeep
+!assets/*.png
+!assets/*.webp

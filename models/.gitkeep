@@ -1,0 +1,14 @@
+Placeholder so the folder exists in Git.
+
+Everything inside `models/` is ignored by Git. Run:
+
+    python download_models.py
+
+to place the three local artefacts here:
+
+    models/silero_vad.onnx
+    models/whisper-base/                 (config.json, model.bin, tokenizer.json, vocabulary.txt)
+    models/qwen2.5-1.5b-instruct-q4_k_m.gguf
+
+Caches created at runtime also live here (hf_cache/, torch_cache/) so that no
+file is ever written to the Windows user profile.

@@ -1,0 +1,49 @@
+# =============================================================================
+# StemTrans-Portable — pip requirements (Python 3.10)
+#
+#   python -m pip install -r requirements.txt
+#
+# The first line is NOT optional: it points pip at the official pre-built
+# CPU wheels of llama-cpp-python, which avoids the MSVC / CMake build that
+# fails on a clean Windows machine.
+# =============================================================================
+--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+
+# ---- Numeric core -----------------------------------------------------------
+# 1.26.x is the last line that every CTranslate2 / ONNX Runtime wheel in this
+# project is built against. Do not float it to 2.x blindly.
+numpy==1.26.4
+
+# ---- Audio capture (WASAPI shared mode + loopback) --------------------------
+PyAudioWPatch>=0.2.12.7,<0.3
+
+# ---- Voice activity detection (ONNX Runtime, CPU, no PyTorch) ---------------
+onnxruntime>=1.19.2,<1.21
+
+# ---- Speech recognition (Faster-Whisper, CPU int8) --------------------------
+faster-whisper>=1.1.0,<2.0
+ctranslate2>=4.5.0,<5.0
+tokenizers>=0.20,<0.22
+huggingface-hub>=0.26,<1.0
+# Whisper's Chinese output is often Traditional; normalise to Simplified so the
+# glossary (Simplified) matches and the UI stays consistent.
+zhconv>=1.4.0
+
+# ---- Local LLM translation (Qwen2.5 GGUF via llama.cpp) ---------------------
+llama-cpp-python>=0.3.8,<0.4
+
+# ---- Offline TTS (Windows SAPI5) --------------------------------------------
+pyttsx3>=2.90,<3.0
+comtypes>=1.4.8
+
+# ---- GUI + real-window screenshot -------------------------------------------
+customtkinter==5.2.2
+Pillow>=10.4.0
+darkdetect>=0.8.0
+
+# ---- Model downloader / CLI -------------------------------------------------
+requests>=2.32.0
+tqdm>=4.66.0
+
+# ---- Misc -------------------------------------------------------------------
+typing-extensions>=4.12.0

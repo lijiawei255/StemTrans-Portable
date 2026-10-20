@@ -1,0 +1,72 @@
+{
+  "network": {
+    "source": "china",
+    "hf_endpoint_mirror": "https://hf-mirror.com",
+    "hf_endpoint_official": "https://huggingface.co",
+    "modelscope_endpoint": "https://www.modelscope.cn"
+  },
+  "ui": {
+    "mode": "offline",
+    "opacity": 0.97,
+    "always_on_top": true,
+    "max_cards": 40,
+    "appearance": "light"
+  },
+  "audio": {
+    "mic_device": "",
+    "loopback_device": "",
+    "input_gain": 1.0,
+    "chunk_ms": 20,
+    "vad": {
+      "backend": "silero-onnx",
+      "model_path": "models/silero_vad.onnx",
+      "threshold": 0.5,
+      "min_silence_ms": 1100,
+      "min_speech_ms": 240,
+      "speech_pad_ms": 320,
+      "max_utterance_s": 24.0
+    }
+  },
+  "asr": {
+    "model_size": "base",
+    "model_dir": "models/whisper-base",
+    "compute_type": "int8",
+    "beam_size": 3,
+    "cpu_threads": 4,
+    "language_mic": "zh",
+    "language_loopback": "en",
+    "language_single": "zh",
+    "use_glossary_prompt": false,
+    "initial_prompt_max_chars": 780,
+    "engine": "faster-whisper",
+    "device": "cpu"
+  },
+  "llm": {
+    "model_path": "models/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+    "n_ctx": 2048,
+    "n_threads": 4,
+    "max_tokens": 220,
+    "temperature": 0.2,
+    "n_batch": 256,
+    "top_p": 0.9,
+    "repeat_penalty": 1.05,
+    "warmup": true
+  },
+  "tts": {
+    "enabled": false,
+    "rate": 185,
+    "volume": 0.95,
+    "cooldown_ms": 350,
+    "speak_languages": [
+      "en"
+    ],
+    "max_pending": 2
+  },
+  "pipeline": {
+    "queue_size": 24,
+    "min_chars": 1
+  },
+  "$schema": "internal://stemtrans/settings-v1",
+  "version": 2,
+  "telemetry": false
+}

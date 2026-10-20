@@ -1,0 +1,61 @@
+# =============================================================================
+# StemTrans-Portable — Anaconda environment (Python 3.10)
+#
+#   conda env create -f environment.yml
+#   conda activate stemtrans
+#
+# NOTE 1: llama-cpp-python MUST come from the official pre-built CPU wheel
+#         index. Building it from source on Windows requires MSVC and fails
+#         for most users, so the extra index below is mandatory.
+# NOTE 2: this file is kept in sync with requirements.txt. If you change a
+#         pin, change it in both places.
+# =============================================================================
+name: stemtrans
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip>=24.0
+  - setuptools>=70
+  - wheel>=0.43
+  - pip:
+      # ---- Pre-built CPU wheels for llama-cpp-python (zero C++ compile) ----
+      - --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+
+      # ---- Numeric core (pinned: CTranslate2 / ONNX Runtime ABI) ----
+      - numpy==1.26.4
+
+      # ---- Audio capture: WASAPI shared mode + loopback ----
+      - PyAudioWPatch>=0.2.12.7,<0.3
+
+      # ---- VAD: Silero VAD executed directly on ONNX Runtime (no PyTorch) ----
+      - onnxruntime>=1.19.2,<1.21
+
+      # ---- ASR: Faster-Whisper, CPU int8 ----
+      - faster-whisper>=1.1.0,<2.0
+      - ctranslate2>=4.5.0,<5.0
+      - tokenizers>=0.20,<0.22
+      - huggingface-hub>=0.26,<1.0
+      - zhconv>=1.4.0
+
+      # ---- Local LLM translation: Qwen2.5 GGUF on llama.cpp (CPU) ----
+      - llama-cpp-python>=0.3.8,<0.4
+
+      # ---- Offline TTS: Windows SAPI5 ----
+      - pyttsx3>=2.90,<3.0
+      - comtypes>=1.4.8
+
+      # ---- GUI + screenshot ----
+      - customtkinter==5.2.2
+      - Pillow>=10.4.0
+      - darkdetect>=0.8.0
+
+      # ---- Model download / CLI ----
+      - requests>=2.32.0
+      - tqdm>=4.66.0
+
+      # ---- Misc runtime ----
+      - typing-extensions>=4.12.0
